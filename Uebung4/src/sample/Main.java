@@ -1,14 +1,23 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Group;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Slider;
 import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage;
+
+import java.awt.*;
 
 public class Main extends Application {
 
@@ -23,9 +32,16 @@ public class Main extends Application {
     private Label labelActivePlayer;
     private Label labelGameStatus;
 
-    private VBox animationBox;
+    private BorderPane animationBox;
 
-    private VBox controlBox;
+    private Dice dice;
+
+    private Pane matchBox;
+
+    private BorderPane controlBox;
+    private Button btnRole;
+    private Button btnReset;
+    private Slider sliderSum;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -52,25 +68,44 @@ public class Main extends Application {
         statusBox.getChildren().addAll(labelSumPlayerA, labelSumPlayerB, labelActivePlayer, labelGameStatus);
 
         // Animation Box
-        animationBox = new VBox();
-        animationBox.setPadding(new Insets(10, 10, 10, 10));
-        animationBox.setAlignment(Pos.CENTER);
+        animationBox = new BorderPane();
+        animationBox.setPadding(new Insets(25, 25, 25, 25));
         animationBox.setStyle("-fx-background-color: #485b7a");
+        dice = new Dice();
+        dice.setDiceOffset(new Point(40, 110));
+        animationBox.setLeft(dice.getPane());
+        matchBox = new Pane();
+        matchBox.setPadding(new Insets(25, 25, 25, 25));
+        Rectangle matchField = new Rectangle(0, 0, 250, 350);
+        matchField.setFill(Color.WHITESMOKE);
+        matchBox.getChildren().add(matchField);
+        animationBox.setRight(matchBox);
 
         // Control Box
-        controlBox = new VBox();
-        controlBox.setPadding(new Insets(10, 10, 10, 10));
-        controlBox.setAlignment(Pos.CENTER);
+        controlBox = new BorderPane();
+        controlBox.setPadding(new Insets(20, 20, 20, 20));
+        controlBox.setMinHeight(100);
         controlBox.setStyle("-fx-background-color: #3d3a4b");
+        btnRole = new Button("Würfeln");
+        btnRole.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                dice.roll();
+            }
+        });
+        btnReset = new Button("Neu starten");
+        sliderSum = new Slider();
+        controlBox.setLeft(btnRole);
+        controlBox.setRight(btnReset);
+        controlBox.setBottom(sliderSum);
 
         // Root Box
         root = new VBox();
         root.getChildren().addAll(titleBox, statusBox, animationBox, controlBox);
 
-
         // Primary Stage
         primaryStage.setTitle("Uebung 4");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 560, 670));
         primaryStage.show();
     }
 
