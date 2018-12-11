@@ -1,16 +1,18 @@
-package sample;
+package sample.de.thm.craps.view;
 
-import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import org.w3c.dom.css.Rect;
+import sample.de.thm.craps.model.Dice;
+import sample.de.thm.craps.model.Game;
 
 import java.awt.*;
 import java.util.Random;
 
-public class Dice implements PaneInterface {
+public class DiceUI implements UI {
 
     private Point diceOffset;
     private Pane diceBox;
@@ -30,12 +32,18 @@ public class Dice implements PaneInterface {
         return this.diceBox;
     }
 
-    public Dice() {
-        currentNumber = 6;
+    public DiceUI() {
         diceOffset = new Point(0, 0);
         diceBox = new Pane();
         initEyes();
-        draw(currentNumber);
+        Dice.getInstance().currentNumberProperty().addListener((ChangeListener<? super Number>) (observable, oldValue, newValue) -> {
+            draw((int)newValue);
+        });
+        Game.getInstance().currentGameStateProperty().addListener((ChangeListener<? super Number>) (observable, oldValue, newValue) -> {
+            if((int)newValue == Game.GAMESTATE_NOT_STARTED) {
+                draw(0);
+            }
+        });
     }
 
     private void initEyes() {
@@ -58,13 +66,13 @@ public class Dice implements PaneInterface {
         draw(currentNumber);
     }
 
-    public int roll() {
+    /*public int roll() {
         Random rand = new Random();
         int result = rand.nextInt(6) + 1;
         draw(result);
         currentNumber = result;
         return result;
-    }
+    }*/
 
     private void draw(int number) {
         dice = new Rectangle(diceOffset.getX() + 0, diceOffset.getY() + 0, 100, 100);

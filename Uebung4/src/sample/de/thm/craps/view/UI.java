@@ -1,8 +1,8 @@
-package sample;
+package sample.de.thm.craps.view;
 
 import javafx.scene.layout.Pane;
 
-public interface PaneInterface {
+public interface UI {
 
     public Pane getPane();
 
