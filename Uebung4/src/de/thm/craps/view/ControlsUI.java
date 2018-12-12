@@ -1,6 +1,5 @@
-package sample.de.thm.craps.view;
+package de.thm.craps.view;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
@@ -14,7 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import sample.de.thm.craps.model.Game;
+import de.thm.craps.model.Game;
 
 public class ControlsUI implements UI {
 

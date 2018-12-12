@@ -1,16 +1,14 @@
-package sample.de.thm.craps.view;
+package de.thm.craps.view;
 
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
-import sample.de.thm.craps.model.Dice;
-import sample.de.thm.craps.model.Game;
+import de.thm.craps.model.Dice;
+import de.thm.craps.model.Game;
 
 import java.awt.*;
-import java.util.Random;
 
 public class DiceUI implements UI {
 

@@ -1,4 +1,4 @@
-package sample.de.thm.craps.model;
+package de.thm.craps.model;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;

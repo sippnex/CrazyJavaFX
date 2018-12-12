@@ -1,4 +1,4 @@
-package sample.de.thm.craps.view;
+package de.thm.craps.view;
 
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
@@ -8,8 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
-import sample.de.thm.craps.model.Dice;
-import sample.de.thm.craps.model.Game;
+import de.thm.craps.model.Game;
 
 public class StatusUI implements UI {
 

@@ -1,4 +1,4 @@
-package sample.de.thm.craps.view;
+package de.thm.craps.view;
 
 import javafx.beans.value.ChangeListener;
 import javafx.geometry.Insets;
@@ -6,7 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import sample.de.thm.craps.model.Game;
+import de.thm.craps.model.Game;
 
 public class MatchFieldUI implements UI {
 

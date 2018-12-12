@@ -1,4 +1,4 @@
-package sample.de.thm.craps.view;
+package de.thm.craps.view;
 
 import javafx.scene.layout.Pane;
 
