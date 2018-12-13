@@ -62,7 +62,7 @@ public class LoginDialog extends Dialog<Pair<String, String>> {
         // Convert the result to a email-password-pair when the submit button is clicked.
         this.setResultConverter(dialogButton -> {
             if (dialogButton == buttonTypeSubmit) {
-                return new Pair<>(textEmail.getText(), textEmail.getText());
+                return new Pair<>(textEmail.getText(), textPassword.getText());
             }
             return null;
         });
