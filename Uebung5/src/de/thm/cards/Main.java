@@ -1,9 +1,6 @@
 package de.thm.cards;
 
-import com.sun.javafx.util.Utils;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -35,6 +32,8 @@ public class Main extends Application {
     private Pane boxImage;
 
     private VBox root;
+
+    private int callIndex = 0;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -78,19 +77,20 @@ public class Main extends Application {
     }
 
     private void addOpacityBinding(Slider slider, ImageView imageView) {
+
         // Variante A
-        slider.valueProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-                imageView.setOpacity(new_val.doubleValue() / 100);
-            }
+        slider.valueProperty().addListener((ov, old_val, new_val) -> {
+            imageView.setOpacity(new_val.doubleValue() / 100);
         });
 
         // Variante B
-        /*slider.valueChangingProperty().addListener(new ChangeListener<Boolean>() {
-            @Override
-            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
-                imageView.setOpacity(slider.getValue() / 100);
+        /*slider.valueProperty().addListener((ov, old_val, new_val) -> {
+            if(!slider.isValueChanging()) {
+                imageView.setOpacity(new_val.doubleValue() / 100);
             }
+        });
+        slider.valueChangingProperty().addListener((ov, old_val, new_val) -> {
+            imageView.setOpacity(slider.getValue() / 100);
         });*/
     }
 }
